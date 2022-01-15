@@ -153,6 +153,8 @@ class _RandomWordsState extends State<RandomWords> {
 }
 
 class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({Key? key}) : super(key: key);
+
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
 }
