@@ -8,14 +8,11 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Named Routes Demo',
-    // Start the app with the "/" named route. In this case, the app starts
-    // on the FirstScreen widget.
     initialRoute: '/',
     routes: {
-      // When navigating to the "/" route, build the FirstScreen widget.
       '/': (context) => const FirstScreen(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      '/second': (context) => const SecondScreen(),
+      '/myapp': (context) => const MyApp(),
+      '/todo': (context) => const Todo(),
     },
   ));
 }
@@ -26,30 +23,36 @@ class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate to the second screen using a named route.
-            Navigator.pushNamed(context, '/second');
-          },
-          child: const Text('Launch screen'),
+        appBar: AppBar(
+          title: const Text('First Screen'),
         ),
-      ),
-    );
+        body: Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to the second screen using a named route.
+                Navigator.pushNamed(context, '/myapp');
+              },
+              child: const Text('MyApp'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/todo');
+                },
+                child: const Text('Todo'))
+          ],
+        ));
   }
 }
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class Todo extends StatelessWidget {
+  const Todo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Screen'),
+        title: const Text('Todo'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -122,26 +125,28 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter layout demo'),
-        ),
-        body: ListView(
-          children: [
-            Image.asset(
-              'images/lake.jpg',
-              width: 600,
-              height: 240,
-              fit: BoxFit.cover,
-            ),
-            titleSection,
-            buttonSection,
-            textSection,
-          ],
-        ),
+    return
+        // MaterialApp(
+        // title: 'Flutter layout demo',
+        // home:
+        Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter layout demo'),
       ),
+      body: ListView(
+        children: [
+          Image.asset(
+            'images/lake.jpg',
+            width: 600,
+            height: 240,
+            fit: BoxFit.cover,
+          ),
+          titleSection,
+          buttonSection,
+          textSection,
+        ],
+      ),
+      // ),
     );
   }
 
